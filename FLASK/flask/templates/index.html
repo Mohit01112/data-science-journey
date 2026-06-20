@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 16px;
+            font-size: 3rem;
+            letter-spacing: 1px;
+        }
+        p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin: 16px 0;
+        }
+        .note {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Index Page</h1>
+        <p>This page is the main index template for the Flask application. It serves as the landing page connected to <strong>main.py</strong>.</p>
+        <p>When the Flask app routes to the root URL, this template is rendered to present the initial interface to users.</p>
+        <div class="note">
+            <p>Use this page as the homepage for the Flask project and update it with details about the app, features, or navigation links as needed.</p>
+        </div>
+    </div>
+</body>
+</html>
