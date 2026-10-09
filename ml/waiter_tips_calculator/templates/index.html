@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f5ef">
+    <title>TipPredict | Smart Tip Estimator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <header class="navbar">
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-icon">✦</span> TipPredict
+        </a>
+        <span class="nav-label">SMART TIP ESTIMATOR</span>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <span class="eyebrow">YOUR DINING COMPANION</span>
+            <h1>Great service.<br><span>Fair tips.</span></h1>
+            <p>Enter your dining details and let machine learning estimate your tip in seconds.</p>
+        </section>
+
+        {% if error %}
+        <div class="alert" role="alert">
+            <span class="alert-icon">!</span>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <section class="form-card">
+            <div class="card-heading">
+                <div>
+                    <span class="section-number">01 / DINING DETAILS</span>
+                    <h2>Let's set the table.</h2>
+                    <p>Provide your dining information below.</p>
+                </div>
+                <div class="card-icon" aria-hidden="true">🍽️</div>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="POST" id="tipForm">
+                <div class="form-group">
+                    <label for="total_bill">Total bill amount</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">₹</span>
+                        <input
+                            type="number"
+                            id="total_bill"
+                            name="total_bill"
+                            min="0.01"
+                            max="100000"
+                            step="0.01"
+                            placeholder="850.00"
+                            required
+                        >
+                    </div>
+                    <small>Enter the bill amount in the currency used by your model.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="size">Number of people</label>
+                    <input
+                        type="number"
+                        id="size"
+                        name="size"
+                        min="1"
+                        max="50"
+                        step="1"
+                        placeholder="e.g. 4 people"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sex">Server category</label>
+                        <select id="sex" name="sex" required>
+                            <option value="" disabled selected>Select category</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smoker">Smoking status</label>
+                        <select id="smoker" name="smoker" required>
+                            <option value="" disabled selected>Select status</option>
+                            <option value="No">Non-smoker</option>
+                            <option value="Yes">Smoker</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="day">Day of visit</label>
+                        <select id="day" name="day" required>
+                            <option value="" disabled selected>Select day</option>
+                            <option value="Thur">Thursday</option>
+                            <option value="Fri">Friday</option>
+                            <option value="Sat">Saturday</option>
+                            <option value="Sun">Sunday</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Meal time</label>
+                        <select id="time" name="time" required>
+                            <option value="" disabled selected>Select meal</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-button" id="predictButton">
+                    <span id="buttonText">Predict My Tip</span>
+                    <span id="buttonArrow" aria-hidden="true">→</span>
+                </button>
+
+                <p class="form-note">
+                    <span class="note-icon">✦</span>
+                    Powered by your trained machine learning model
+                </p>
+            </form>
+        </section>
+
+        <section class="bottom-note">
+            <span class="bottom-note-icon">✧</span>
+            <p>A helpful estimate for your dining experience. The final tip is always your choice.</p>
+        </section>
+    </main>
+
+    <footer>
+        <span>✦ TipPredict</span>
+        <span>Made for smarter dining decisions</span>
+    </footer>
+</body>
+</html>

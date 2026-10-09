@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f5ef">
+    <title>Your Prediction | TipPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-icon">✦</span> TipPredict
+        </a>
+        <span class="nav-label">YOUR ESTIMATE</span>
+    </header>
+
+    <main class="result-container">
+        <div class="success-icon" aria-hidden="true">✓</div>
+
+        <section class="result-hero">
+            <span class="eyebrow">YOUR PREDICTION IS READY</span>
+            <h1>Your dining<br><span>breakdown.</span></h1>
+            <p>Your trained machine learning model has estimated the tip for this bill.</p>
+        </section>
+
+        <section class="result-card">
+            <div class="result-main">
+                <span class="result-label">PREDICTED TIP</span>
+                <h2>₹{{ "%.2f"|format(result.predicted_tip) }}</h2>
+                <span class="percentage-pill">
+                    {{ "%.2f"|format(result.tip_percentage) }}% of your bill
+                </span>
+            </div>
+
+            <div class="result-details">
+                <div class="result-row">
+                    <span>Original bill</span>
+                    <strong>₹{{ "%.2f"|format(result.total_bill) }}</strong>
+                </div>
+
+                <div class="result-row">
+                    <span>Predicted tip</span>
+                    <strong>₹{{ "%.2f"|format(result.predicted_tip) }}</strong>
+                </div>
+
+                <div class="result-row total-row">
+                    <span>Estimated total</span>
+                    <strong>₹{{ "%.2f"|format(result.total_amount) }}</strong>
+                </div>
+
+                <div class="result-row">
+                    <span>Party size</span>
+                    <strong>{{ result.party_size }} people</strong>
+                </div>
+
+                <div class="result-row">
+                    <span>Tip per person</span>
+                    <strong>₹{{ "%.2f"|format(result.tip_per_person) }}</strong>
+                </div>
+            </div>
+
+            <a href="{{ url_for('home') }}" class="primary-button predict-again">
+                <span aria-hidden="true">↻</span>
+                <span>Predict Again</span>
+            </a>
+
+            <button type="button" class="secondary-button" onclick="window.print()">
+                Print Results
+            </button>
+        </section>
+
+        <div class="bottom-note">
+            <span class="bottom-note-icon">✧</span>
+            <p>This is a model-generated estimate, not a mandatory tip. Adjust it to suit your experience.</p>
+        </div>
+    </main>
+
+    <footer>
+        <span>✦ TipPredict</span>
+        <span>Thank you for dining with us</span>
+    </footer>
+</body>
+</html>
